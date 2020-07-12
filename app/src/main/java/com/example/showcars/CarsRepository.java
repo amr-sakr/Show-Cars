@@ -23,16 +23,17 @@ public class CarsRepository {
                     CarsResponse carsResponse = response.body();
                     if (carsResponse != null) {
                         data.postValue(carsResponse);
-                        Log.d("CarsRepository", "response is " + response.toString());
+                        Log.d("CarsRepository", "response is " + response.body().toString());
                     } else {
                         Log.d("CarsRepository", "data is null");
                     }
+                    Log.d("CarsRepository", "response is " + response.body().toString());
                 }
             }
 
             @Override
             public void onFailure(Call<CarsResponse> call, Throwable t) {
-                Log.d("CarsRepository", "onFailure" + t.getMessage());
+                Log.d("CarsRepository", "onFailure " + t.getMessage());
             }
         });
 

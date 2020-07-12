@@ -14,7 +14,6 @@ import java.util.List;
 
 public class MainViewModel extends ViewModel {
 
-
     ApiStatus apiStatus;
     private MutableLiveData<CarsResponse> response;
     private CarsRepository repository;
@@ -46,6 +45,7 @@ public class MainViewModel extends ViewModel {
         } else {
             apiStatus.failed("Something went wrong");
         }
+
 
         return carsList;
     }

@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 public interface WebServices {
 
     @GET("cars")
-    Call<CarsResponse> getCars(@Query("page") int Page);
+    Call<CarsResponse> getCars(@Query(value = "page", encoded = true) int Page);
 
 
 }

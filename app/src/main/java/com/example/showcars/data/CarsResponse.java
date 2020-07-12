@@ -14,6 +14,10 @@ public class CarsResponse {
     @Expose
     private List<Car> data = null;
 
+    @SerializedName("error")
+    @Expose
+    private List<Car> error = null;
+
     public int getStatus() {
         return status;
     }
@@ -30,4 +34,12 @@ public class CarsResponse {
         this.data = data;
     }
 
+
+    @Override
+    public String toString() {
+        return "CarsResponse{" +
+                "status=" + status +
+                ", data=" + data +
+                '}';
+    }
 }
