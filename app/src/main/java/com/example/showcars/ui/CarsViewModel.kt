@@ -14,8 +14,10 @@ import java.lang.Exception
 
 class CarsViewModel(private val repository: CarsRepository) : ViewModel() {
 
+     var apiStatus : ApiStatus? = null
 
     private val _cars = MutableLiveData<List<Data>>()
+    private val _status = MutableLiveData<Int>()
     val cars: LiveData<List<Data>>
     get() = _cars
 
@@ -25,26 +27,28 @@ class CarsViewModel(private val repository: CarsRepository) : ViewModel() {
     }
 
 
-
-
     private fun getCars(page: Int) {
-
+        apiStatus?.isLoading()
         try {
             viewModelScope.launch {
                 if (page > 0) {
                     val response = repository.getCars(page)
-                    _cars.value = response.value
+                    _cars.value = response.value?.data
+                    _status.value = response.value?.status
+                    if (_status.value == 0) {
+                        apiStatus?.onFailure("Page not found")
+                    }
                     Timber.d(("Data ${_cars.value}"))
+                    Timber.d(("Status ${_status.value}"))
                 }
             }
 
         } catch (e: ApiException) {
             Timber.d("Exception ${e.message.toString()}")
         } catch (e: NoInternetException) {
-            Timber.d("Exception ${e.message.toString()}")
-
+            Timber.d("Exception 1 ${e.message.toString()}")
         } catch (e: Exception) {
-            Timber.d("Exception ${e.message.toString()}")
+            Timber.d("Exception 2 ${e.message.toString()}")
         }
     }
 

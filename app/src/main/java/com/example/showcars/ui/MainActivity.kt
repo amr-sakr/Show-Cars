@@ -13,7 +13,7 @@ import com.example.showcars.networking.NetworkConnectionInterceptor
 import com.example.showcars.networking.WebService
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ApiStatus {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var viewModel: CarsViewModel
@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         val factory = CarsViewModelFactory(repository)
         bindView()
         viewModel = ViewModelProvider(this, factory).get(CarsViewModel::class.java)
+        viewModel.apiStatus = this
         viewModel.setPage(1)
         observeCars()
 
@@ -56,6 +57,18 @@ class MainActivity : AppCompatActivity() {
             carsListAdapter = CarsListAdapter()
             adapter = carsListAdapter
         }
+    }
+
+    override fun isLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onFailure(message: String?) {
+        TODO("Not yet implemented")
     }
 
 

@@ -9,15 +9,15 @@ import kotlinx.coroutines.withContext
 //TODO change later to use paging library
 class CarsRepository(private val webService: WebService) : SafeApiRequest() {
 
-    private val cars = MutableLiveData<List<Data>>()
+    private val carsResponse = MutableLiveData<CarsResponse>()
 
 
-    suspend fun getCars(page: Int): MutableLiveData<List<Data>>{
+    suspend fun getCars(page: Int): MutableLiveData<CarsResponse>{
         val response = apiRequest { webService.getCars(page) }
-        cars.value = response.data
-        cars.postValue(cars.value)
+        carsResponse.value = response
+        carsResponse.postValue(carsResponse.value)
         return withContext(Dispatchers.IO){
-            cars
+            carsResponse
         }
     }
 }

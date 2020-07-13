@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.showcars.R
 import com.example.showcars.data.Data
-import com.example.showcars.databinding.ActivityMainBinding
 import com.example.showcars.databinding.CarsListItemBinding
 import timber.log.Timber
 
