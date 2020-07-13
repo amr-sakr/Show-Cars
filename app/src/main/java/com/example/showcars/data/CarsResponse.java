@@ -12,11 +12,11 @@ public class CarsResponse {
     private int status;
     @SerializedName("data")
     @Expose
-    private List<Car> data = null;
+    private List<Data> data = null;
 
     @SerializedName("error")
     @Expose
-    private List<Car> error = null;
+    private Error error = null;
 
     public int getStatus() {
         return status;
@@ -26,14 +26,21 @@ public class CarsResponse {
         this.status = status;
     }
 
-    public List<Car> getData() {
+    public List<Data> getData() {
         return data;
     }
 
-    public void setData(List<Car> data) {
+    public void setData(List<Data> data) {
         this.data = data;
     }
 
+    public Error getError() {
+        return error;
+    }
+
+    public void setError(Error error) {
+        this.error = error;
+    }
 
     @Override
     public String toString() {

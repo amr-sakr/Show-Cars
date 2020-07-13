@@ -1,5 +1,6 @@
 package com.example.showcars.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,19 +27,20 @@ public class MainActivity extends AppCompatActivity implements ApiStatus {
         CarsRepository repository = new CarsRepository();
         MainViewModelFactory factory = new MainViewModelFactory(repository, this);
         viewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
-        observeCars(1);
+        viewModel.setPage(1); // static for now
+        observeCars();
     }
 
 
-    private void observeCars(int page) {
+    @SuppressLint("LogNotTimber")
+    private void observeCars() {
         if (NetworkHelper.hasNetworkAccess(this)) {
-
-            viewModel.getCars(page).observe(this, cars -> {
+            viewModel.getCarsData().observe(this, cars -> {
                 if (cars != null) {
                     Log.d("MainActivity", "Getting List " + cars.toString());
                     Toast.makeText(this, "ss" + cars.toString(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Something went wrong000", Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -3,7 +3,7 @@ package com.example.showcars.data;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Car {
+public class Data {
     @SerializedName("id")
     @Expose
     private int id;
